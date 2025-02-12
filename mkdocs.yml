@@ -1,7 +1,7 @@
-site_name: LSEN691_TD_QGIS
-site_url: ""
-use_directory_urls: false
-plugins: []
+site_name: "UVSQ_LSEN691_TD_QGIS"
+site_url: "https://nicoudart.github.io/UVSQ_LSEN691_TD_QGIS"
+site_author: "Nicolas OUDART"
+
 theme:
   name: readthedocs
 nav:
