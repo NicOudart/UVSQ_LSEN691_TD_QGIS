@@ -1,6 +1,6 @@
 # LSEN691 : TD QGIS
 
-![Logo](docs/Logo.png)
+![Logo](docs/img/Logo.png)
 
 _TD conçu pour les étudiants de L3 de l'Université de Versailles Saint-Quentin (UVSQ)_
 
