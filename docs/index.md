@@ -9,8 +9,10 @@ _TD conçu pour les étudiants de L3 de l'Université de Versailles Saint-Quenti
 L'objectif de ce TD est de vous permettre de prendre en main le logiciel QGIS, afin de vous aider à réaliser votre projet.
 QGIS est un logiciel libre de SIG.
 
+~~~
 On appelle SIG un "Système d'Information Géographique". Il s'agit d'un outil de stockage et d'analyse de données géospatiales.
 Ce TD vous donnera des exemples d'applications de QGIS, allant de l'analyse d'images à la classification automatique.
+~~~
 
 Pour préparer le TD, installez QGIS, le plugin SCP, et téléchargez les données.
 Plus d'informations dans la section [Préparation](preparation.md) du TD.
