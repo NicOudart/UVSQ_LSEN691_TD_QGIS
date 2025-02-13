@@ -2,7 +2,7 @@
 
 Cette dernière partie du TD propose un exercice de plus haut niveau, qui fera appel aux différentes compétences que vous avez acquises lors des exercices précédents.
 L'objectif est de déterminer la surface d'un objet dans une image "raster".
-Il vous faudra réfléchir vous-même à la stratégie à appliquer et aux outils à utiliser, pour répondre à un problème.
+Il vous faudra réfléchir vous-même à la stratégie à appliquer et aux outils à utiliser, pour répondre à ce problème.
 Une fois cet exercice réussi, vous serez prêts à utiliser QGIS pour votre projet !
 
 ---

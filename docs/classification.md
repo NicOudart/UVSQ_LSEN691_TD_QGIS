@@ -1,7 +1,7 @@
 ## La classification avec SCP
 
 Cette partie du TD vous donnera les bases de la classification automatique avec QGIS (supervisée et non-supervisée) au travers de 2 exercices d'application à des données satellites.
-Le plugin "Semi-Automatic Classification" (SCP), développé par Luca Congedo, sera utilisé ici.
+Le plugin "[Semi-Automatic Classification](https://semiautomaticclassificationmanual.readthedocs.io/pl/latest/index.html)" (SCP), développé par Luca Congedo, sera utilisé ici.
 L'idée est de vous donner les outils pour pouvoir classifier les pixels d'une image satellite (nuages, forêts, océans, ...) lors de votre projet.
 
 ![SCP logo](img/SCP_logo.jpg)
@@ -30,35 +30,35 @@ Les grandes étapes d'une classification non-supervisée de pixels dans une imag
 
 1. Sélection des images et des bandes spectrales à analyser en fonction de la problématique.
 
-2. Analyse des images par un algorithme, dont on définit les paramètres d'analyse : nombre de classes, nombre d'itérations, les bandes spectrales à utiliser, etc.
+2. Découpage des images en groupes de pixels (i.e. les classes) par un algorithme, dont on définit les paramètres d'analyse : nombre de classes, nombre d'itérations, les bandes spectrales à utiliser, etc.
 
-3. Identification des différentes classes (groupes de pixels) créées par l'algorithme.
+3. Identification des différentes classes créées par l'algorithme.
 
-Il existe différents algorithmes de classification non-supervisée. Nous utiliserons ici l'algorithme "k-means" (ou "k-moyennes").
+Il existe différents algorithmes de classification non-supervisée. Nous utiliserons ici l'algorithme "[k-means](https://fr.wikipedia.org/wiki/K-moyennes)" (ou "k-moyennes").
 Pour classer les pixels, l'algorithme se basera sur l'idée suivante : identifier les pics des différents histogrammes de l'image, et affecter les valeurs aux pics les plus proches. Les séparations entre classes tendent ainsi à se situer à mi-distance entre les pics.
 
 La méthode k-means se déroule selon les étapes suivantes :
 
-* Choix au hasard d'un point par classe (si l'utilisateur a choisi d'utiliser 4 classes, 4 points seront tirés au sort). Ces points constitueront le centre des classes.
+* Choix au hasard d'un point par classe dans l'espace des valeurs des différentes bandes (si l'utilisateur a choisi d'utiliser 3 classes, 3 points seront tirés au sort). Ces points constitueront le centre des classes.
 
-* Chacun des autres points sont affectés au centre le plus proche : on constitue ainsi par exemple 4 classes.
+* Chacun des autres points sont affectés au centre le plus proche : on constitue ainsi par exemple 3 classes.
 
 * Les barycentres de chacune de ces classes sont calculés.
 
 * Chaque point est affecté au centre le plus proche, et on recommence !
 
-![QGIS K-means](img/QGIS_kmeans.gif)
-
 L'algorithme s'arrête quand les points ne changent plus de classes, ou quand le nombre d'itérations maximum est atteint.
 
-Le nombre de classes est définit par l'utilisateur au moment de lancer l'algorithme. Le choix des points initiaux étant aléatoire, la méthode ne donnera exactement le même résultat si on la lance une 2ème fois avec les mêmes paramètres.
-Lorque l'on a pas d'idée a-priori du nombre de classes à chercher, il est recommandé de lancer l'algorithme pour plusieurs nombres, et de sélectionner soi-même la meilleure classification. Des critères existent pour aider à réaliser ce choix.
+![QGIS K-means](img/QGIS_kmeans.gif)
+
+Le nombre de classes est définit par l'utilisateur au moment de lancer l'algorithme. Le choix des points initiaux étant aléatoire, la méthode ne donnera pas exactement le même résultat si on la lance une 2ème fois avec les mêmes paramètres.
+Lorque l'on a pas d'idée a priori du nombre de classes à chercher, il est recommandé de lancer l'algorithme pour plusieurs nombres, et de sélectionner soi-même la meilleure classification. Des [critères](https://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set) existent pour aider à réaliser ce choix.
 
 La méthode k-means est connue pour sa rapidité et sa simplicité. Pour cette raison, elle est souvent la 1ère méthode utilisée en classification non-supervisée.
 
 **Exercice :**
 
-Nous allons appliquer la classification non-supervisée à l'image radiométrique multi-bandes "HOW15TM.tif" disponible dans le dossier "HOW15TM". On rappelle qu'il s'agit de données du satellite Landsat 8TM, prises au-dessus de la région de Worcester, dans le Massachusetts (USA).
+Nous allons appliquer la classification non-supervisée à l'image radiométrique multi-bandes "HOW15TM.tif" disponible dans le dossier "HOW15TM". On rappelle qu'il s'agit de données du satellite [Landsat 8TM](https://landsat.gsfc.nasa.gov/satellites/landsat-8), prises au-dessus de la région de Worcester, dans le Massachusetts (USA).
 
 * Cliquez dans la barre d'outils sur l'icone "Semi-Automatic Classification Plugin".
 
@@ -79,7 +79,7 @@ Si vous fermez la fenêtre, l'image classifiée est alors ouverte dans QGIS. Vou
 ### Exercice de classification supervisée
 
 Comme expliqué précédemment, la classification supervisée se base sur un échantillon de pixels de référence labélisé par l'utilisateur.
-Pour la labélisation de cet échantillon, il est possible de se baser sur une campagne de terrain avec des relevés d'occupation du sol, et/ou sur des bases de données autres (par exemple Corine Land Cover).
+Pour la labélisation de cet échantillon, il est possible de se baser sur une campagne de terrain avec des relevés d'occupation du sol, et/ou sur des bases de données autres (par exemple [Corine Land Cover](https://land.copernicus.eu/en/products/corine-land-cover)).
 On parle souvent de "ground-truth" ("vérité terrain").
 
 Les grandes étapes d'une classification supervisée de pixels dans une image satellite multi-bandes sont les suivantes :
@@ -94,26 +94,26 @@ Les grandes étapes d'une classification supervisée de pixels dans une image sa
 
 Il existe de nombreux algorithmes de classification supervisée. Le plugin SCP propose les suivants :
 
-* Maximum Likelihood
+* [Maximum Likelihood](https://semiautomaticclassificationmanual.readthedocs.io/sk/latest/remote_sensing.html#max-likelihood-algorithm)
 
-* Minimum Distance
+* [Minimum Distance](https://semiautomaticclassificationmanual.readthedocs.io/sk/latest/remote_sensing.html#minimum-distance)
 
-* Multilayer Perceptron
+* [Multilayer Perceptron](https://semiautomaticclassificationmanual.readthedocs.io/sk/latest/remote_sensing.html#multi-layer-perceptron)
 
-* Random Forest
+* [Random Forest](https://semiautomaticclassificationmanual.readthedocs.io/sk/latest/remote_sensing.html#multi-layer-perceptron)
 
-* Spectral Angle Mapping
+* [Spectral Angle Mapping](https://semiautomaticclassificationmanual.readthedocs.io/sk/latest/remote_sensing.html#spectral-angle-mapping)
 
-* Support Vector Machine
+* [Support Vector Machine](https://semiautomaticclassificationmanual.readthedocs.io/sk/latest/remote_sensing.html#support-vector-machine)
 
 Dans cet exercice, nous nous concentrerons sur les algorithmes "Minimum Distance" et "Maximum Likelihood" ("maximum de vraisemblance").
 L'idée est dans les 2 cas de déterminer une frontière de décision entre classes, en modélisant la répartition des valeurs des pixels dans l'échantillon d'entrainement. 
 C'est ce modèle qui nous servira à classifier des pixels hors de l'échantillon d'entrainement.
 La différence est dans la manière de déterminer une frontière de décision :
 
-* **Minimum Distance** va calculer la distance Euclidienne entre les valeurs d'un nouveau pixel et la moyenne des valeurs de chaque classe (déterminée à partir de l'échantillon d'entrainement). On attribura à ce pixel le label de la classe "la plus proche" au sens de cette distance.
+* **Minimum Distance** va calculer la [distance Euclidienne](https://fr.wikipedia.org/wiki/Distance_euclidienne) entre les valeurs d'un nouveau pixel et la moyenne des valeurs de chaque classe (déterminée à partir de l'échantillon d'entrainement). On attribura à ce pixel le label de la classe "la plus proche" au sens de cette distance.
 
-* **Maximum Likelihood** va modéliser la distribution des valeurs des pixels de chaque classe par une loi normale (fonction Gaussienne). En se basant sur la formule de Bayes, la probabilité d'appartenance à chaque classe d'un nouveau pixel sera calculée. On attribura à ce pixel le label de la classe la plus probable.
+* **Maximum Likelihood** va modéliser la distribution des valeurs des pixels de chaque classe par une [loi normale](https://fr.wikipedia.org/wiki/Loi_normale) (fonction Gaussienne). En se basant sur la [formule de Bayes](https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Bayes), la probabilité d'appartenance à chaque classe d'un nouveau pixel sera calculée. On attribura à ce pixel le label de la classe la plus probable.
 
 Minimum Distance est plus rapide que Maximum Likelihood, mais il est en général moins performant, de part sa représentation sa modélisation simpliste de l'échantillon d'entrainement.
 
@@ -124,8 +124,8 @@ Minimum Distance est plus rapide que Maximum Likelihood, mais il est en généra
 _Récupération des données :_
 
 > Notre zone d'étude couvre une partie du lac de Garde dans le nord de l'Italie.
-> Ces données sont issues du satellite Sentinel-2, elles sont déjà convertiesen réflectance et adaptées à la zone d'étude.
-> Sentinel-2 est un satellite multi-spectral développé par l'Agence Spatiale Européenne (ESA) dans le cadre des services de surveillance des terres de Copernicus.
+> Ces données sont issues du satellite [Sentinel-2](https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-2), elles sont déjà converties en réflectance et adaptées à la zone d'étude.
+> Sentinel-2 est un satellite multi-spectral développé par l'Agence Spatiale Européenne (ESA) dans le cadre des services de surveillance des terres de [Copernicus](https://www.copernicus.eu/fr).
 > Sentinel-2 acquiert 13 bandes spectrales avec une résolution spatiale de 10 à 60 m selon la bande, comme illustré dans ce tableau :
 
 |Bande|Cible                  |Longueur d'onde centrale (µm)|Résolution (m)|
@@ -164,11 +164,12 @@ _Définition du "Jeu de bandes" :_
 
 _Sélection des "ROI" :_
 
-> Nous allons à présent créer des "ROI" ("Region Of Interest"), définissant des "Classes" et des "Macroclasses".
-> SCP permet en effet de définir 2 niveaux de classifications :
+> Nous allons à présent créer des "ROI" ("Region Of Interest") qui constitueront notre base de données d'entrainement, en définissant des "Classes" et des "Macroclasses".
+> SCP permet en effet de définir 2 niveaux de classification :
 
-> **Classe :** groupe de pixels ayant une signature spectrale similaire, associée a un type d'occupation du sol ("arbres", "herbe", "bâtiments" ou "routes" par exemple). On leur associe un "C ID".
-> **Macroclasse :** groupe de ROI contenant différentes classes, mais que l'on veut ranger ensemble pour l'étude ("végétation" contenant "arbres" et "herbe", "artificiel" contenant "bâtiments et "routes" par exemple). On leur associe un "MC ID".
+> * **Classe :** groupe de pixels ayant une signature spectrale similaire, associée a un type d'occupation du sol ("arbres", "herbe", "bâtiments" ou "routes" par exemple). On leur associe un "C ID".
+
+> * **Macroclasse :** groupe de ROI contenant différentes classes, mais que l'on veut ranger ensemble pour l'étude ("végétation" contenant "arbres" et "herbe", "artificiel" contenant "bâtiments et "routes" par exemple). On leur associe un "MC ID".
 
 > Une macroclasse étant composée de matériaux ayant des signatures spectrales différentes, pour obtenir de bons résultats en classification nous devons séparer les matériaux même s'ils appartiennent à la même macroclasse.
 > Nous allons donc créer plusieurs ROI pour chaque macroclasse, en attribuant un C ID différent à chaque ROI.
@@ -182,7 +183,7 @@ _Sélection des "ROI" :_
 |Vegetation |3    |
 |Soil       |4    |
 
-> Il y a 2 méthodes pour sélectionner des ROI : dessiner manuellement un polygone ou utiliser un algorithme d'agrandissement automatique de la région.
+> Il y a 2 méthodes pour sélectionner des ROI : dessiner manuellement un polygone ou utiliser un algorithme de "[croissance de région](https://fr.wikipedia.org/wiki/Algorithme_de_croissance_de_r%C3%A9gion)".
 
 > Nous allons commencer par sélectionner un polygone manuellement pour la macroclasse "Water" :
 
@@ -200,13 +201,13 @@ _Sélection des "ROI" :_
 
 ![QGIS données d'entrainement](img/QGIS_training_data.gif)
 
-> Nous allons à présent utiliser l'algorithme d'agrandissement automatique pour la macroclasse "Built-up" :
+> Nous allons à présent utiliser l'algorithme de "croissance de région" pour la macroclasse "Built-up" :
 
 > * Dans la barre d'outils SCP, il y a un paramètre "Dist" qui doit être définit en fonction de la plage de valeurs des pixels. De manière générale, augmenter "Dist" crée des ROI plus grandes. Nous proposons de paramétrer "Dist" à 0,06.
 
-> * Dans la barre d'outils SCP, cliquez sur l'icone "Activate ROI pointer". Trouvez une portion de l'image correspondant à des batiments (en bleu clair en RGB=7-3-2). Cliquez sur un pixel correspondant à un batiment.
+> * Dans la barre d'outils SCP, cliquez sur l'icone "Activate ROI pointer". Trouvez une portion de l'image correspondant à des bâtiments (en bleu clair en RGB=7-3-2). Cliquez sur un pixel correspondant à un bâtiment.
 
-> * Un polygone orange apparait alors. Il s'agit encore une fois d'un polygone temporaire (pas encore enregistré dans les données d'entrainement). Si vous générez un nouveau polygone temporaire, le précédent sera alors remplacé.
+> * Un polygone orange apparait alors, généré par l'algorithme de "croissance de région". Il s'agit encore une fois d'un polygone temporaire (pas encore enregistré dans les données d'entrainement). Si vous générez un nouveau polygone temporaire, le précédent sera alors remplacé.
 
 > * Pour enregistrer ce polygone dans les données d'entrainement, dans le "SCP Dock" / "Entrée données d'entrainement" / "ROI & Liste des signatures", définissez MC ID = 2, Nom de MC = Built-up, C ID  = 2 et Nom de C = Buildings. Cliquez alors sur l'icone "Save temporary ROI to training input".
 
@@ -225,11 +226,11 @@ _Création d'une classification "preview" :_
 > Il peut être utile de créer un aperçu de la classification sur un morceau de l'image, afin d'évaluer les performances avant la classification de la totalité de l'image.
 > Si les résultats ne sont pas bons, nous pouvons collecter des ROI supplémentaires.
 
-> Avant un aperçu (ou une classification de toute l'image), n'oubliez pas de définir les couleurs de différentes classes / macroclasses.
+> Avant un aperçu (ou une classification de toute l'image), n'oubliez pas de définir les couleurs des différentes classes / macroclasses.
 
-> Nous allons donc réaliser un aperçu de notre modèle de classification :
+> Nous allons réaliser un aperçu de notre modèle de classification :
 
-> * Dans le barre d'outils SCP, cliquez sur l'icone "Semi-Automatic Classification Plugin".
+> * Dans la barre d'outils SCP, cliquez sur l'icone "Semi-Automatic Classification Plugin".
 
 > * Dans la fenêtre qui s'ouvre, allez dans "Traitement de bande", puis dans "Classification".
 
@@ -247,7 +248,7 @@ _Création d'une classification "preview" :_
 
 _Création de la classification totale :_
 
-> En partant du principe que nous sommes satisfaits des performances du modèle de classification, nous allons procéder à la classification totale de l'image :
+> En partant du principe que nous sommes satisfaits des performances du modèle de classification (ce qui est très discutable ici), nous allons procéder à la classification totale de l'image :
 
 > * Dans la barre d'outils SCP, cliquez à nouveau sur l'icone "Semi-Automatic Classification".
 

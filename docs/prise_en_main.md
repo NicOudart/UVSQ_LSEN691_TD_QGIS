@@ -35,7 +35,7 @@ Dérouler les boutons à options (en cliquant sur la petite flèche juste à cô
 
 ### Analyse d'une image
 
-Commençons par l'analyse de l'image radar "Venice_Envisat_ASAR.tif" disponible dans le dossier "Venice".
+Commençons par l'analyse de l'image radar "Venice_Envisat_ASAR.tif" disponible dans le dossier "Venice". Ces données du satellite [ENVISAT](https://earth.esa.int/eogateway/missions/envisat) ont été prises au-dessus de Venise en Italie.
 
 Vous pouvez tout simplement glisser l'image dans la fenêtre du logiciel.
 Vous obtenez quelques informations de base : nom de la couche, type de géométrie, système de référence des coordonnées et le chemin complet de l'emplacement sur votre appareil.
@@ -62,7 +62,7 @@ Pour obtenir plus d'informations, et pour modifier la façon dont l'image s'affi
 
 ### Analyse d'une image multispectrale
 
-Nous allons à présent analyser l'image radiométrique "Venice_Landsat_ETM_multispectral.tif" disponible dans le dossier "Venice".
+Nous allons à présent analyser l'image radiométrique "Venice_Landsat_ETM_multispectral.tif" disponible dans le dossier "Venice". Ces données ont également été prises au-dessus de Venise en Italie, mais par un satellite [Landsat](https://landsat.gsfc.nasa.gov).
 
 Comme pour l'exercice précédent, vous pouvez tout simplement glisser l'image dans la fenêtre du logiciel.
 Qu'observez-vous ?
@@ -89,7 +89,7 @@ Vous pouvez également modifier les paramètres d'affichage grâce à l'onglet "
 
 ![QGIS image multispectrale](img/QGIS_multispec_3.gif)
 
-* Analysez les shapefiles en utilisant le "gestionnaire BD" : cliquez sur "Base de données" dans le menu, puis cliquez sur "DB manager". Un fenêtre s'ouvrira, qui vous permettra de sélectionner la couche du projet que vous voulez analyser.
+* Analysez les shapefiles en utilisant le "gestionnaire BD" : cliquez sur "Base de données" dans le menu, puis cliquez sur "DB manager". Une fenêtre s'ouvrira, qui vous permettra de sélectionner la couche du projet que vous voulez analyser.
 
 ![QGIS image multispectrale](img/QGIS_multispec_4.gif)
 
@@ -97,7 +97,7 @@ Vous pouvez également modifier les paramètres d'affichage grâce à l'onglet "
 
 ### Manipulation de plusieurs bandes spectrales
 
-Nous allons pour finir analyser l'image radiométrique multi-bandes "HOW15TM.tif" disponible dans le dossier "HOW15TM". Il s'agit de données du satellite Landsat 8TM, prises au-dessus de la région de Worcester, dans le Massachusetts (USA).
+Nous allons pour finir analyser l'image radiométrique multi-bandes "HOW15TM.tif" disponible dans le dossier "HOW15TM". Il s'agit de données du satellite [Landsat 8TM](https://landsat.gsfc.nasa.gov/satellites/landsat-8), prises au-dessus de la région de Worcester, dans le Massachusetts (USA).
 
 Vous pouvez une fois de plus glisser l'image dans la fenêtre du logiciel.
 Qu'observez-vous ?
@@ -115,7 +115,7 @@ On observe une distribution bimodiale : 2 pics sont clairement visibles dans l'h
 
 Maintenant que nous avons affiché l'histogramme de la bande 3 :
 
-* Définissez la plage de données optimale. Vous pouvez zoomer sur l'histogramme en cliquant dessus avec la "loupe".
+* Définissez la plage de données optimale. Vous pouvez zoomer sur l'histogramme en cliquant dessus avec la loupe.
 
 * Adaptez les valeurs min/max (en entrant les valeurs ou en les sélectionnant directement sur le graphique), et cliquez sur "Appliquer". Qu'observez-vous au niveau de l'image ?
 

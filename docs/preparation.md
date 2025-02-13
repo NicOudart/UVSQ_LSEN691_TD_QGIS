@@ -46,7 +46,7 @@ De nouveaux onglets sont à présent disponibles dans QGIS.
 
 **La classification non-supervisée n'est plus disponible dans la dernière version de SCP.**
 
-Afin de contourner ce problème, vous pouvez installer dans un 2nd la version 7 du plugin.
+Afin de contourner ce problème, vous pouvez installer dans un 2nd temps la version 7 du plugin.
 
 Pour installer SCP version 7 :
 

@@ -6,7 +6,7 @@ _TD conçu pour les étudiants de L3 de l'Université de Versailles Saint-Quenti
 
 ## Présentation du TD
 
-L'objectif de ce TD est de vous permettre de prendre en main le logiciel QGIS, afin de vous aider à réaliser votre projet.
+L'objectif de ce TD est de vous permettre de prendre en main le logiciel [QGIS](https://qgis.org), afin de vous aider à réaliser votre projet.
 QGIS est un logiciel libre de SIG.
 
 On appelle SIG un "Système d'Information Géographique". Il s'agit d'un outil de stockage et d'analyse de données géospatiales.
