@@ -1,7 +1,7 @@
 ## Prise en main de QGIS
 
 Cette partie du TD vous permettra de prendre en main QGIS, avec 3 exercices d'analyse d'images satellite.
-L'idée est ici est de vous donner les bases nécessaires à l'utilisation de QGIS dans le cadre de votre projet.
+L'idée est ici de vous donner les bases nécessaires à l'utilisation de QGIS dans le cadre de votre projet.
 
 ![QGIS logo](img/QGIS_logo.png)
 
