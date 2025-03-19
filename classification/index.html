@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Nicolas OUDART" /><link rel="canonical" href="https://nicoudart.github.io/UVSQ_LSEN691_TD_QGIS/classification/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Classification - UVSQ_LSEN691_TD_QGIS</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Classification";
+        var mkdocs_page_input_path = "classification.md";
+        var mkdocs_page_url = "/UVSQ_LSEN691_TD_QGIS/classification/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> UVSQ_LSEN691_TD_QGIS
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preparation/">Préparation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../prise_en_main/">Prise en main</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Classification</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction-a-la-classification-automatique">Introduction à la classification automatique</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercice-de-classification-non-supervisee">Exercice de classification non-supervisée</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercice-de-classification-supervisee">Exercice de classification supervisée</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../surface/">Surface</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">UVSQ_LSEN691_TD_QGIS</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Classification</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="la-classification-avec-scp">La classification avec SCP</h2>
+<p>Cette partie du TD vous donnera les bases de la classification automatique avec QGIS (supervisée et non-supervisée) au travers de 2 exercices d'application à des données satellites.
+Le plugin "<a href="https://semiautomaticclassificationmanual.readthedocs.io/pl/latest/index.html">Semi-Automatic Classification</a>" (SCP), développé par Luca Congedo, sera utilisé ici.
+L'idée est de vous donner les outils pour pouvoir classifier les pixels d'une image satellite (nuages, forêts, océans, ...) lors de votre projet.</p>
+<p><img alt="SCP logo" src="../img/SCP_logo.jpg" /></p>
+<hr />
+<h3 id="introduction-a-la-classification-automatique">Introduction à la classification automatique</h3>
+<p>La classification des pixels d'une image satellite selon leur signature spectrale (i.e. les valeurs mesurées pour les différentes bandes d'observation) peut se faire de manière automatique. 
+On appelle "classes" les différents groupes de pixels, et "labels" les étiquettes attribuées à chaque classe.
+On peut diviser les méthodes de classification automatique en 2 grandes catégories :</p>
+<ul>
+<li>
+<p><strong>Classification supervisée</strong> : un modèle est entrainé à classifier les pixels d'une image en s'appuyant sur une base de données de référence, constituée de pixels dont les signatures spectrales sont déjà labélisées. </p>
+</li>
+<li>
+<p><strong>Classification non-supervisée</strong> : un algorithme regroupe les pixels d'une image dont la signature spectrale est la plus proche, et l'utilisateur devra labéliser lui-même ces groupes par la suite. On parle en anglais de "clustering" ("regroupement").</p>
+</li>
+</ul>
+<p><img alt="QGIS intro classification" src="../img/QGIS_intro_classification.gif" /></p>
+<p>Les exercices suivants vous permettrons d'apprendre à utiliser le plugin SCP, afin de réaliser des classifications automatiques de pixel au sein d'images satellites multi-bandes.</p>
+<hr />
+<h3 id="exercice-de-classification-non-supervisee">Exercice de classification non-supervisée</h3>
+<p>Les grandes étapes d'une classification non-supervisée de pixels dans une image satellite multi-bandes sont les suivantes :</p>
+<ol>
+<li>
+<p>Sélection des images et des bandes spectrales à analyser en fonction de la problématique.</p>
+</li>
+<li>
+<p>Découpage des images en groupes de pixels (i.e. les classes) par un algorithme, dont on définit les paramètres d'analyse : nombre de classes, nombre d'itérations, les bandes spectrales à utiliser, etc.</p>
+</li>
+<li>
+<p>Identification des différentes classes créées par l'algorithme.</p>
+</li>
+</ol>
+<p>Il existe différents algorithmes de classification non-supervisée. Nous utiliserons ici l'algorithme "<a href="https://fr.wikipedia.org/wiki/K-moyennes">k-means</a>" (ou "k-moyennes").
+Pour classer les pixels, l'algorithme se basera sur l'idée suivante : identifier les pics des différents histogrammes de l'image, et affecter les valeurs aux pics les plus proches. Les séparations entre classes tendent ainsi à se situer à mi-distance entre les pics.</p>
+<p>La méthode k-means se déroule selon les étapes suivantes :</p>
+<ul>
+<li>
+<p>Choix au hasard d'un point par classe dans l'espace des valeurs des différentes bandes (si l'utilisateur a choisi d'utiliser 3 classes, 3 points seront tirés au sort). Ces points constitueront le centre des classes.</p>
+</li>
+<li>
+<p>Chacun des autres points sont affectés au centre le plus proche : on constitue ainsi par exemple 3 classes.</p>
+</li>
+<li>
+<p>Les barycentres de chacune de ces classes sont calculés.</p>
+</li>
+<li>
+<p>Chaque point est affecté au centre le plus proche, et on recommence !</p>
+</li>
+</ul>
+<p>L'algorithme s'arrête quand les points ne changent plus de classes, ou quand le nombre d'itérations maximum est atteint.</p>
+<p><img alt="QGIS K-means" src="../img/QGIS_kmeans.gif" /></p>
+<p>Le nombre de classes est définit par l'utilisateur au moment de lancer l'algorithme. Le choix des points initiaux étant aléatoire, la méthode ne donnera pas exactement le même résultat si on la lance une 2ème fois avec les mêmes paramètres.
+Lorque l'on a pas d'idée a priori du nombre de classes à chercher, il est recommandé de lancer l'algorithme pour plusieurs nombres, et de sélectionner soi-même la meilleure classification. Des <a href="https://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set">critères</a> existent pour aider à réaliser ce choix.</p>
+<p>La méthode k-means est connue pour sa rapidité et sa simplicité. Pour cette raison, elle est souvent la 1ère méthode utilisée en classification non-supervisée.</p>
+<p><strong>Exercice :</strong></p>
+<p>Nous allons appliquer la classification non-supervisée à l'image radiométrique multi-bandes "HOW15TM.tif" disponible dans le dossier "HOW15TM". On rappelle qu'il s'agit de données du satellite <a href="https://landsat.gsfc.nasa.gov/satellites/landsat-8">Landsat 8TM</a>, prises au-dessus de la région de Worcester, dans le Massachusetts (USA).</p>
+<ul>
+<li>
+<p>Cliquez dans la barre d'outils sur l'icone "Semi-Automatic Classification Plugin".</p>
+</li>
+<li>
+<p>Une fenêtre s'ouvre. Cliquez sur "Jeu de bandes", cliquez sur l'icone "Open a file", et ouvrez l'image multi-bande.</p>
+</li>
+<li>
+<p>Cliquez sur "Traitement de bande", puis sur "clustering".</p>
+</li>
+<li>
+<p>Vous pouvez alors modifier les paramètres de l'algorithme k-means, et lancer le processus en cliquant sur "Lancer".</p>
+</li>
+<li>
+<p>Une fenêtre s'ouvre, qui vous permettra de sauvegarder votre image "classifiée" en format TIF.</p>
+</li>
+</ul>
+<p>Si vous fermez la fenêtre, l'image classifiée est alors ouverte dans QGIS. Vous pouvez maintenant changer les étiquettes (labels) des différentes classes, voir en supprimer si elles sont inutiles.</p>
+<p><img alt="QGIS classification non-supervisée" src="../img/QGIS_clustering.gif" /></p>
+<hr />
+<h3 id="exercice-de-classification-supervisee">Exercice de classification supervisée</h3>
+<p>Comme expliqué précédemment, la classification supervisée se base sur un échantillon de pixels de référence labélisé par l'utilisateur.
+Pour la labélisation de cet échantillon, il est possible de se baser sur une campagne de terrain avec des relevés d'occupation du sol, et/ou sur des bases de données autres (par exemple <a href="https://land.copernicus.eu/en/products/corine-land-cover">Corine Land Cover</a>).
+On parle souvent de "ground-truth" ("vérité terrain").</p>
+<p>Les grandes étapes d'une classification supervisée de pixels dans une image satellite multi-bandes sont les suivantes :</p>
+<ol>
+<li>
+<p>Localisation de parcelles représentatives de chaque catégorie d'occupation du sol sur l'image. Ce seront les "parcelles d'entraînement".</p>
+</li>
+<li>
+<p>Vectorisation des polygones autour de chaque parcelle, avec assignation d'un identifiant unique pour chaque classe d'occupation du sol.</p>
+</li>
+<li>
+<p>Analyse des pixels inclus dans les parcelles d'entraînement et création d'un fichier de signatures spectrales pour chaque catégorie d'occupation du sol. Ce sera notre modèle de classification.</p>
+</li>
+<li>
+<p>Classification de l'ensemble des pixels de l'image par comparaison de la signature spectrale de chacun par rapport à celle du fichier des signatures de référence.</p>
+</li>
+</ol>
+<p>Il existe de nombreux algorithmes de classification supervisée. Le plugin SCP propose les suivants :</p>
+<ul>
+<li>
+<p><a href="https://semiautomaticclassificationmanual.readthedocs.io/sk/latest/remote_sensing.html#max-likelihood-algorithm">Maximum Likelihood</a></p>
+</li>
+<li>
+<p><a href="https://semiautomaticclassificationmanual.readthedocs.io/sk/latest/remote_sensing.html#minimum-distance">Minimum Distance</a></p>
+</li>
+<li>
+<p><a href="https://semiautomaticclassificationmanual.readthedocs.io/sk/latest/remote_sensing.html#multi-layer-perceptron">Multilayer Perceptron</a></p>
+</li>
+<li>
+<p><a href="https://semiautomaticclassificationmanual.readthedocs.io/sk/latest/remote_sensing.html#multi-layer-perceptron">Random Forest</a></p>
+</li>
+<li>
+<p><a href="https://semiautomaticclassificationmanual.readthedocs.io/sk/latest/remote_sensing.html#spectral-angle-mapping">Spectral Angle Mapping</a></p>
+</li>
+<li>
+<p><a href="https://semiautomaticclassificationmanual.readthedocs.io/sk/latest/remote_sensing.html#support-vector-machine">Support Vector Machine</a></p>
+</li>
+</ul>
+<p>Dans cet exercice, nous nous concentrerons sur les algorithmes "Minimum Distance" et "Maximum Likelihood" ("maximum de vraisemblance").
+L'idée est dans les 2 cas de déterminer une frontière de décision entre classes, en modélisant la répartition des valeurs des pixels dans l'échantillon d'entrainement. 
+C'est ce modèle qui nous servira à classifier des pixels hors de l'échantillon d'entrainement.
+La différence est dans la manière de déterminer une frontière de décision :</p>
+<ul>
+<li>
+<p><strong>Minimum Distance</strong> va calculer la <a href="https://fr.wikipedia.org/wiki/Distance_euclidienne">distance Euclidienne</a> entre les valeurs d'un nouveau pixel et la moyenne des valeurs de chaque classe (déterminée à partir de l'échantillon d'entrainement). On attribura à ce pixel le label de la classe "la plus proche" au sens de cette distance.</p>
+</li>
+<li>
+<p><strong>Maximum Likelihood</strong> va modéliser la distribution des valeurs des pixels de chaque classe par une <a href="https://fr.wikipedia.org/wiki/Loi_normale">loi normale</a> (fonction Gaussienne). En se basant sur la <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Bayes">formule de Bayes</a>, la probabilité d'appartenance à chaque classe d'un nouveau pixel sera calculée. On attribura à ce pixel le label de la classe la plus probable.</p>
+</li>
+</ul>
+<p>Minimum Distance est plus rapide que Maximum Likelihood, mais il est en général moins performant, de part sa représentation sa modélisation simpliste de l'échantillon d'entrainement.</p>
+<p><img alt="QGIS classification supervisée" src="../img/QGIS_classification.gif" /></p>
+<p><strong>Exercice :</strong></p>
+<p><em>Récupération des données :</em></p>
+<blockquote>
+<p>Notre zone d'étude couvre une partie du lac de Garde dans le nord de l'Italie.
+Ces données sont issues du satellite <a href="https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-2">Sentinel-2</a>, elles sont déjà converties en réflectance et adaptées à la zone d'étude.
+Sentinel-2 est un satellite multi-spectral développé par l'Agence Spatiale Européenne (ESA) dans le cadre des services de surveillance des terres de <a href="https://www.copernicus.eu/fr">Copernicus</a>.
+Sentinel-2 acquiert 13 bandes spectrales avec une résolution spatiale de 10 à 60 m selon la bande, comme illustré dans ce tableau :</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bande</th>
+<th style="text-align: center;">Cible</th>
+<th style="text-align: center;">Longueur d'onde centrale (µm)</th>
+<th style="text-align: right;">Résolution (m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: center;">Aerosols côtiers</td>
+<td style="text-align: center;">0.443</td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: center;">Bleu</td>
+<td style="text-align: center;">0.490</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: center;">Vert</td>
+<td style="text-align: center;">0.560</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: center;">Rouge</td>
+<td style="text-align: center;">0.665</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td style="text-align: left;">5</td>
+<td style="text-align: center;">Végétation "red-edge"</td>
+<td style="text-align: center;">0.705</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td style="text-align: left;">6</td>
+<td style="text-align: center;">Végétation "red-edge"</td>
+<td style="text-align: center;">0.740</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td style="text-align: left;">7</td>
+<td style="text-align: center;">Végétation "red-edge"</td>
+<td style="text-align: center;">0.783</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td style="text-align: left;">8</td>
+<td style="text-align: center;">Proche infrarouge (NIR)</td>
+<td style="text-align: center;">0.842</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td style="text-align: left;">8A</td>
+<td style="text-align: center;">Végétation "red-edge"</td>
+<td style="text-align: center;">0.865</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td style="text-align: left;">9</td>
+<td style="text-align: center;">Vapeur d'eau</td>
+<td style="text-align: center;">0.945</td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr>
+<td style="text-align: left;">10</td>
+<td style="text-align: center;">SWIR-Cirrus</td>
+<td style="text-align: center;">1.375</td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr>
+<td style="text-align: left;">11</td>
+<td style="text-align: center;">SWIR</td>
+<td style="text-align: center;">1.610</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td style="text-align: left;">12</td>
+<td style="text-align: center;">SWIR</td>
+<td style="text-align: center;">2.190</td>
+<td style="text-align: right;">20</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Vous pouvez récupérer ces données dans le dossier "SCP_supervisee_data".</p>
+</blockquote>
+<p><em>Définition du "Jeu de bandes" :</em></p>
+<blockquote>
+<p>Tout d'abord, nous devons définir le "jeu de bandes" qui est l'image d'entrée pour la classification.</p>
+<ul>
+<li>
+<p>Cliquez dans la barre d'outils sur l'icone "Semi-Automatic Classification Plugin".</p>
+</li>
+<li>
+<p>Une fenêtre s'ouvre. Cliquez sur "Jeu de bandes", cliquez sur l'icone "Open a file", et ouvrez les fichiers TIF correspondant aux 10 bandes de l'image.</p>
+</li>
+<li>
+<p>Dans la même fenêtre, allez dans la section "Band quick settings", et sélectionnez dans "wavelength" les bandes de "Sentinel-2". Ainsi, les noms des bandes seront dans le bon ordre, avec la bonne fréquence centrale.</p>
+</li>
+<li>
+<p>Vous pouvez maintenant afficher une image composite de bandes de couleurs proche-infrarouge / rouge / vert. Dans la même fenêtre, sélectionnez les bandes ajoutées dans la "Band set table", puis cliquez sur le bouton "RGB". L'image composite s'affiche alors sur la page principale de QGIS.</p>
+</li>
+<li>
+<p>Vous pouvez modifier les bandes utilisées pour les couleurs en cliquant sur la liste "RGB" dans la barre d'outils. Vous pouvez sélectionner "7-3-2" pour proche infrarouge / rouge / vert, et "3-2-1" pour rouge / vert / bleu.</p>
+</li>
+</ul>
+</blockquote>
+<p><img alt="QGIS jeu de bandes" src="../img/QGIS_data_classification.gif" /></p>
+<p><em>Sélection des "ROI" :</em></p>
+<blockquote>
+<p>Nous allons à présent créer des "ROI" ("Region Of Interest") qui constitueront notre base de données d'entrainement, en définissant des "Classes" et des "Macroclasses".
+SCP permet en effet de définir 2 niveaux de classification :</p>
+<ul>
+<li>
+<p><strong>Classe :</strong> groupe de pixels ayant une signature spectrale similaire, associée a un type d'occupation du sol ("arbres", "herbe", "bâtiments" ou "routes" par exemple). On leur associe un "C ID".</p>
+</li>
+<li>
+<p><strong>Macroclasse :</strong> groupe de ROI contenant différentes classes, mais que l'on veut ranger ensemble pour l'étude ("végétation" contenant "arbres" et "herbe", "artificiel" contenant "bâtiments et "routes" par exemple). On leur associe un "MC ID".</p>
+</li>
+</ul>
+<p>Une macroclasse étant composée de matériaux ayant des signatures spectrales différentes, pour obtenir de bons résultats en classification nous devons séparer les matériaux même s'ils appartiennent à la même macroclasse.
+Nous allons donc créer plusieurs ROI pour chaque macroclasse, en attribuant un C ID différent à chaque ROI.</p>
+<p>Nous allons utiliser les MC ID suivant :</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Macroclasse</th>
+<th style="text-align: right;">MC ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Water</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Built-up</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Vegetation</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Soil</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Il y a 2 méthodes pour sélectionner des ROI : dessiner manuellement un polygone ou utiliser un algorithme de "<a href="https://fr.wikipedia.org/wiki/Algorithme_de_croissance_de_r%C3%A9gion">croissance de région</a>".</p>
+<p>Nous allons commencer par sélectionner un polygone manuellement pour la macroclasse "Water" :</p>
+<ul>
+<li>
+<p>Si le panneau "SCP Dock" n'est pas déjà ouvert dans QGIS, dans le menu, cliquez sur "SCP", puis sur "Show plugin".</p>
+</li>
+<li>
+<p>Dans le panneau "SCP Dock", cliquez sur "Entrée données d'entrainement". Créez un nouveau fichier de données d'entrainement en cliquant sur "Create a new training input". Donnez-lui un nom, et cliquez sur "Enregistrer".</p>
+</li>
+<li>
+<p>Dans la barre d'outils SCP, cliquez sur l'icone "Create a ROI polygon". Trouvez une portion de l'image correspondant au lac. Tracez votre polygone sur l'image en faisant des clics gauche au niveau des sommets. Faites un clic droit pour fermer le polygone.</p>
+</li>
+<li>
+<p>Un polygone orange apparait alors. Il s'agit d'un polygone temporaire (pas encore enregistré dans les données d'entrainement). Si vous tracez un nouveau polygone temporaire, le précédent sera alors remplacé.</p>
+</li>
+<li>
+<p>Pour enregistrer ce polygone dans les données d'entrainement, dans le "SCP Dock" / "Entrée données d'entrainement" / "ROI &amp; Liste des signatures", définissez MC ID = 1, Nom de MC = Water, C ID  = 1 et Nom de C = Lake. Cliquez alors sur l'icone "Save temporary ROI to training input".</p>
+</li>
+<li>
+<p>La ROI apparait alors dans la liste. Vous pouvez modifier sa couleur si besoin.</p>
+</li>
+</ul>
+</blockquote>
+<p><img alt="QGIS données d'entrainement" src="../img/QGIS_training_data.gif" /></p>
+<blockquote>
+<p>Nous allons à présent utiliser l'algorithme de "croissance de région" pour la macroclasse "Built-up" :</p>
+<ul>
+<li>
+<p>Dans la barre d'outils SCP, il y a un paramètre "Dist" qui doit être définit en fonction de la plage de valeurs des pixels. De manière générale, augmenter "Dist" crée des ROI plus grandes. Nous proposons de paramétrer "Dist" à 0,06.</p>
+</li>
+<li>
+<p>Dans la barre d'outils SCP, cliquez sur l'icone "Activate ROI pointer". Trouvez une portion de l'image correspondant à des bâtiments (en bleu clair en RGB=7-3-2). Cliquez sur un pixel correspondant à un bâtiment.</p>
+</li>
+<li>
+<p>Un polygone orange apparait alors, généré par l'algorithme de "croissance de région". Il s'agit encore une fois d'un polygone temporaire (pas encore enregistré dans les données d'entrainement). Si vous générez un nouveau polygone temporaire, le précédent sera alors remplacé.</p>
+</li>
+<li>
+<p>Pour enregistrer ce polygone dans les données d'entrainement, dans le "SCP Dock" / "Entrée données d'entrainement" / "ROI &amp; Liste des signatures", définissez MC ID = 2, Nom de MC = Built-up, C ID  = 2 et Nom de C = Buildings. Cliquez alors sur l'icone "Save temporary ROI to training input".</p>
+</li>
+<li>
+<p>La ROI apparait alors dans la liste. Vous pouvez modifier sa couleur si besoin.</p>
+</li>
+</ul>
+</blockquote>
+<p><img alt="QGIS données d'entrainement" src="../img/QGIS_training_data_2.gif" /></p>
+<blockquote>
+<ul>
+<li>
+<p>Créez de la même façon une ROI pour la macroclasse "Vegetation" (pixels rouge en RGB=7-3-2) et une ROI pour la macroclasse "Soil" (pixels jaunâtres en RGB=7-3-2).</p>
+</li>
+<li>
+<p>Vous pouvez afficher les signatures spectrales des ROI en les sélectionnant puis en cliquant sur l'icone "Add highlighted signatures to spectral signature plot" (dans "SCP Dock" / "Entrée données d'entrainement").</p>
+</li>
+</ul>
+</blockquote>
+<p><img alt="QGIS données d'entrainement" src="../img/QGIS_training_data_3.gif" /></p>
+<p><em>Création d'une classification "preview" :</em></p>
+<blockquote>
+<p>Il peut être utile de créer un aperçu de la classification sur un morceau de l'image, afin d'évaluer les performances avant la classification de la totalité de l'image.
+Si les résultats ne sont pas bons, nous pouvons collecter des ROI supplémentaires.</p>
+<p>Avant un aperçu (ou une classification de toute l'image), n'oubliez pas de définir les couleurs des différentes classes / macroclasses.</p>
+<p>Nous allons réaliser un aperçu de notre modèle de classification :</p>
+<ul>
+<li>
+<p>Dans la barre d'outils SCP, cliquez sur l'icone "Semi-Automatic Classification Plugin".</p>
+</li>
+<li>
+<p>Dans la fenêtre qui s'ouvre, allez dans "Traitement de bande", puis dans "Classification".</p>
+</li>
+<li>
+<p>Vérifiez que le jeu de bandes sélectionné est le bon. Cochez "Macroclass ID" ou "Class ID" suivant la classification que vous souhaitez faire. Sélectionnez "Maximum de vraisemblance" (Maximum Likelihood) comme algorithme.</p>
+</li>
+<li>
+<p>Dans la barre d'outils SCP, définissez le paramètre "Set" ("Set the preview size") à 300 pixels.</p>
+</li>
+<li>
+<p>Toujours dans la barre d'outils SCP, cliquez sur l'icone "Activate classification preview pointer". Cliquez ensuite où vous voulez sur l'image.</p>
+</li>
+<li>
+<p>La classification apparait pour un carré de 300x300 pixels, centré là où vous avez cliqué.</p>
+</li>
+</ul>
+<p>La classification obtenue est probablement moyennement performante. Vous pouvez alors modifier les ROI utilisées pour l'entrainement : en retirer ou en ajouter de nouvelles.</p>
+</blockquote>
+<p><img alt="QGIS aperçu de classification" src="../img/QGIS_classification_preview.gif" /></p>
+<p><em>Création de la classification totale :</em></p>
+<blockquote>
+<p>En partant du principe que nous sommes satisfaits des performances du modèle de classification (ce qui est très discutable ici), nous allons procéder à la classification totale de l'image :</p>
+<ul>
+<li>
+<p>Dans la barre d'outils SCP, cliquez à nouveau sur l'icone "Semi-Automatic Classification".</p>
+</li>
+<li>
+<p>Dans la fenêtre qui s'ouvre, allez dans "Traitement de bande", puis dans "Classification". </p>
+</li>
+<li>
+<p>Cette fois-ci, cliquez sur le bouton "Lancer" ("Run").</p>
+</li>
+<li>
+<p>Une fenêtre s'ouvre, vous permettant d'enregistrer la classification au format TIF.</p>
+</li>
+<li>
+<p>Une fois que vous aurez cliqué sur "Enregistrer", l'image entièrement classifiée s'ouvrira dans QGIS.</p>
+</li>
+</ul>
+</blockquote>
+<p><img alt="QGIS classification totale" src="../img/QGIS_classification_totale.gif" /></p>
+<p>Nous vous recommandons d'utiliser la couche OpenStreetMap pour sélectionner les ROI avant une classification, et pour juger des performances d'un modèle de classification.
+Refaites cet exemple avec plus de classes en vous basant sur OpenStreetMap.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../prise_en_main/" class="btn btn-neutral float-left" title="Prise en main"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../surface/" class="btn btn-neutral float-right" title="Surface">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../prise_en_main/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../surface/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

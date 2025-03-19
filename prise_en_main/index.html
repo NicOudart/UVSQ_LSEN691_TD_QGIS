@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Nicolas OUDART" /><link rel="canonical" href="https://nicoudart.github.io/UVSQ_LSEN691_TD_QGIS/prise_en_main/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Prise en main - UVSQ_LSEN691_TD_QGIS</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Prise en main";
+        var mkdocs_page_input_path = "prise_en_main.md";
+        var mkdocs_page_url = "/UVSQ_LSEN691_TD_QGIS/prise_en_main/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> UVSQ_LSEN691_TD_QGIS
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../preparation/">Préparation</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Prise en main</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#demarrer-qgis">Démarrer QGIS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#analyse-dune-image">Analyse d'une image</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#analyse-dune-image-multispectrale">Analyse d'une image multispectrale</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#manipulation-de-plusieurs-bandes-spectrales">Manipulation de plusieurs bandes spectrales</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../classification/">Classification</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../surface/">Surface</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">UVSQ_LSEN691_TD_QGIS</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Prise en main</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="prise-en-main-de-qgis">Prise en main de QGIS</h2>
+<p>Cette partie du TD vous permettra de prendre en main QGIS, avec 3 exercices d'analyse d'images satellite.
+L'idée est ici de vous donner les bases nécessaires à l'utilisation de QGIS dans le cadre de votre projet.</p>
+<p><img alt="QGIS logo" src="../img/QGIS_logo.png" /></p>
+<hr />
+<h3 id="demarrer-qgis">Démarrer QGIS</h3>
+<p>Lorsque démarrez QGIS, la fenêtre suivante s'ouvre : </p>
+<p><img alt="Menu QGIS" src="../img/QGIS_menu_items.gif" /></p>
+<p>Les éléments identifiés sur cette fenêtre sont :</p>
+<ol>
+<li>
+<p>La barre de menu</p>
+</li>
+<li>
+<p>Les barres d'outils</p>
+</li>
+<li>
+<p>Le panneau de l'explorateur de fichiers</p>
+</li>
+<li>
+<p>Le panneau des couches du GIS</p>
+</li>
+<li>
+<p>Le canevas de la carte</p>
+</li>
+<li>
+<p>La barre d'état</p>
+</li>
+</ol>
+<p>Le panneau des couches vous permettra à tout moment de voir les couches disponibles dans le projet.</p>
+<p>Dérouler les boutons à options (en cliquant sur la petite flèche juste à côté du bouton) vous donnera les différentes fonctions de ses options.</p>
+<hr />
+<h3 id="analyse-dune-image">Analyse d'une image</h3>
+<p>Commençons par l'analyse de l'image radar "Venice_Envisat_ASAR.tif" disponible dans le dossier "Venice". Ces données du satellite <a href="https://earth.esa.int/eogateway/missions/envisat">ENVISAT</a> ont été prises au-dessus de Venise en Italie.</p>
+<p>Vous pouvez tout simplement glisser l'image dans la fenêtre du logiciel.
+Vous obtenez quelques informations de base : nom de la couche, type de géométrie, système de référence des coordonnées et le chemin complet de l'emplacement sur votre appareil.</p>
+<p>Pour obtenir plus d'informations, et pour modifier la façon dont l'image s'affiche, cliquez sur l'icone "Style de couche" :</p>
+<p><img alt="QGIS image" src="../img/QGIS_image.gif" /></p>
+<p><strong>Exercice :</strong></p>
+<ul>
+<li>
+<p>Analysez l'image affichée. Que représente-t-elle ?</p>
+</li>
+<li>
+<p>Changez l'échelle de la carte.</p>
+</li>
+<li>
+<p>Utilisez la rotation de l'image.</p>
+</li>
+<li>
+<p>Quelle est la projection utilisée ?</p>
+</li>
+<li>
+<p>A quoi sert l'icone "i" avec une flèche ? Que représente alors le tableau qui apparait en cliquant sur un pixel de l'image (après avoir cliqué sur cette icone) ?</p>
+</li>
+</ul>
+<p><img alt="QGIS image" src="../img/QGIS_image_2.gif" /></p>
+<hr />
+<h3 id="analyse-dune-image-multispectrale">Analyse d'une image multispectrale</h3>
+<p>Nous allons à présent analyser l'image radiométrique "Venice_Landsat_ETM_multispectral.tif" disponible dans le dossier "Venice". Ces données ont également été prises au-dessus de Venise en Italie, mais par un satellite <a href="https://landsat.gsfc.nasa.gov">Landsat</a>.</p>
+<p>Comme pour l'exercice précédent, vous pouvez tout simplement glisser l'image dans la fenêtre du logiciel.
+Qu'observez-vous ?</p>
+<p>Pour accéder aux propriétés des différentes couches, double-cliquez sur elles dans l'onglet "Couches". Une fenêtre apparaitra. Cliquez sur la section "Information". Combien de bandes sont disponibles ? Que représentent-elles ?</p>
+<p>Vous pouvez également modifier les paramètres d'affichage grâce à l'onglet "Style de Couche". Vous pouvez afficher l'image en "Couleur à bandes multiples", "Bande grise unique", et jouer sur les différents autres paramètres. Qu'observez-vous dans chaque cas ?</p>
+<p><img alt="QGIS image multispectrale" src="../img/QGIS_multispec.gif" /></p>
+<p><strong>Exercice :</strong></p>
+<ul>
+<li>
+<p>Isolez la bande 5 en la séléctionnant dans l'onglet "Style de Couche", paramètre "Bande grise".</p>
+</li>
+<li>
+<p>Ajoutez un fichier "shapefile" en ouvrant le fichier "places_UTM_Venice2.shp" contenu dans le sous-dossier "Venice_UTM_subset". Pour ce faire, dans le menu cliquez sur "Couche", puis sur "Ajouter une couche", puis sur "Ajouter une couche vecteur". Une fenêtre s'ouvrira, qui vous permettra de sélectionner le fichier à importer.</p>
+</li>
+<li>
+<p>Une fois la nouvelle couche ajoutée, cliquez sur le symbole "Etiquettes" dans l'onglet "Style de Couche", et sélectionnez "Etiquettes simples".</p>
+</li>
+<li>
+<p>Vous pouvez adapter la couleur des puces et des étiquettes.</p>
+</li>
+</ul>
+<p><img alt="QGIS image multispectrale" src="../img/QGIS_multispec_2.gif" /></p>
+<ul>
+<li>Reprennez l'étape précédente, et ouvrez successivement les fichiers suivants : landuse_UTM_Venice.shp, roads_UTM_Venice.shp, railways_UTM_Venice.shp, natural_UTM_Venice.shp, waterways_UTM_Venice.shp. Vous pouvez visualiser toutes les couches, les éditer, en ajouter ou les supprimer. Comme précédemment, interprétez toutes les données de ces nouvelles couches d'informations.</li>
+</ul>
+<p><img alt="QGIS image multispectrale" src="../img/QGIS_multispec_3.gif" /></p>
+<ul>
+<li>Analysez les shapefiles en utilisant le "gestionnaire BD" : cliquez sur "Base de données" dans le menu, puis cliquez sur "DB manager". Une fenêtre s'ouvrira, qui vous permettra de sélectionner la couche du projet que vous voulez analyser.</li>
+</ul>
+<p><img alt="QGIS image multispectrale" src="../img/QGIS_multispec_4.gif" /></p>
+<hr />
+<h3 id="manipulation-de-plusieurs-bandes-spectrales">Manipulation de plusieurs bandes spectrales</h3>
+<p>Nous allons pour finir analyser l'image radiométrique multi-bandes "HOW15TM.tif" disponible dans le dossier "HOW15TM". Il s'agit de données du satellite <a href="https://landsat.gsfc.nasa.gov/satellites/landsat-8">Landsat 8TM</a>, prises au-dessus de la région de Worcester, dans le Massachusetts (USA).</p>
+<p>Vous pouvez une fois de plus glisser l'image dans la fenêtre du logiciel.
+Qu'observez-vous ?</p>
+<p>De la même manière que pour l'exercice précédent, isolez la bande 3 en nuances de gris. Qu'observez-vous à présent ?</p>
+<p>Tracez l'histogramme de l'image : double-cliquez sur la couche correspondante, et dans la fenêtre qui s'ouvre, cliquez sur "Histogramme". Que voyez-vous ?
+L'histogramme est la fréquence des pixels en fonction de leur valeur. Et plus la valeur des pixels est haute, plus la réflectance est élevée.
+Focalisons-nous sur l'histogramme de la bande 3. Cliquez sur "Préférences/Actions", et cliquez sur "Afficher la bande sélectionnée". 
+On observe une distribution bimodiale : 2 pics sont clairement visibles dans l'histogramme.</p>
+<p><img alt="QGIS image multi-bandes" src="../img/QGIS_multiband.gif" /></p>
+<p><strong>Exercice :</strong></p>
+<p>Maintenant que nous avons affiché l'histogramme de la bande 3 :</p>
+<ul>
+<li>
+<p>Définissez la plage de données optimale. Vous pouvez zoomer sur l'histogramme en cliquant dessus avec la loupe.</p>
+</li>
+<li>
+<p>Adaptez les valeurs min/max (en entrant les valeurs ou en les sélectionnant directement sur le graphique), et cliquez sur "Appliquer". Qu'observez-vous au niveau de l'image ?</p>
+</li>
+<li>
+<p>Déterminez les valeurs caractéristiques des 2 pics de l'histogramme. A quelles catégories de l'image pouvez-vous les attribuer ? L'identification est-elle facile ?</p>
+</li>
+<li>
+<p>Ouvrir successivement les autres bandes spectrales, et tracer de la même manière les histogrammes en essayant d'identifier les pics. Que constatez-vous ?</p>
+</li>
+</ul>
+<p><img alt="QGIS image multi-bandes" src="../img/QGIS_multiband_2.gif" /></p>
+<p>Pour aider à l'identification des catégories de l'image correspondant aux pics, nous allons afficher un fond :</p>
+<ul>
+<li>
+<p>Allez dans le panneau "Explorateur", puis allez sur "XYZ Tiles", et double-cliquez sur "OpenStreetMap". Une carte s'affiche.</p>
+</li>
+<li>
+<p>Alternez l'affichage entre les 2 couches disponibles, pour associer les zones claires / sombres de la bande choisie avec la carte. Vous pouvez aussi jouer sur la transparence de chaque couche.</p>
+</li>
+</ul>
+<p><img alt="QGIS image multi-bandes" src="../img/QGIS_multiband_3.gif" /></p>
+<p>Chaque bande spectrale contient des informations, plus ou moins intéressantes suivant les catégories à analyser. Avec QGIS, il est possible d'analyser plusieurs bandes spectrales en même temps. Pour cela, il faut combiner plusieurs bandes spectracles et faire une "composition colorée".</p>
+<p>Voici comment créer une composition colorée de type "RGB" (Red, Green and Blue) :</p>
+<ul>
+<li>
+<p>Dans le panneau "Style de Couches" (pour la couche HOW15TM), dans la catégorie "Symbologie", de la même manière que vous aviez sélectionné "Bande grise unique" précedemment, sélectionnez "Couleur à bandes multiples".</p>
+</li>
+<li>
+<p>Choisir les bonnes bandes pour les bonnes couleurs, en vous basant sur ce tableau suivant, qui décrit les bandes d'observation du satellite Landsat 8TM :</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bande</th>
+<th style="text-align: center;">Cible</th>
+<th style="text-align: right;">Longueur d'onde (µm)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: center;">Aerosols côtiers</td>
+<td style="text-align: right;">0.43-0.45</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: center;">Bleu</td>
+<td style="text-align: right;">0.45-0.51</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: center;">Vert</td>
+<td style="text-align: right;">0.53-0.59</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: center;">Rouge</td>
+<td style="text-align: right;">0.64-0.67</td>
+</tr>
+<tr>
+<td style="text-align: left;">5</td>
+<td style="text-align: center;">Proche infrarouge (NIR)</td>
+<td style="text-align: right;">0.85-0.88</td>
+</tr>
+</tbody>
+</table>
+<p>(La résolution au sol de chaque bande est de 30 m).</p>
+<p>Notez que l'on n'utilise pas ici la bande 1. La bande bleue du visible correspond ici à la bande 2, ce qui décale les affectations de couleurs. C'est ce que l'on appelle une "composition colorée en vraies couleurs" (True Color Composite).</p>
+<ul>
+<li>
+<p>Affichez les informations de l'image et les commenter.</p>
+</li>
+<li>
+<p>Interpréter cette nouvelle image RGB et enregister le résultat sous le nom "HOW15TCC", en utilisant par exemple : dans le menu "Projet", cliquez sur "Importer/Exporter", puis sur "Exporter la carte au format image". Une fenêtre s'ouvrira qui vous permettra de paramétrer votre export.</p>
+</li>
+</ul>
+<p><img alt="QGIS image multi-bandes" src="../img/QGIS_multiband_4.gif" /></p>
+<p>Maintenant que vous associez les bonnes couleurs aux bandes, analysez de nouveau les histogrammes :</p>
+<ul>
+<li>
+<p>A quoi correspondent les différents pics ?</p>
+</li>
+<li>
+<p>Vous pouvez à nouveau utiliser l'icone "Identifier des entités" de la barre d'outils, et cliquer à différents endroits de l'image pour obtenir les valeurs de chaque bande.</p>
+</li>
+<li>
+<p>Analysez les différentes zones composant l'image (eau, ville, forêt, etc.) et reliez ces informations aux bandes utilisées.</p>
+</li>
+</ul>
+<p><img alt="QGIS image multi-bandes" src="../img/QGIS_multiband_5.gif" /></p>
+<p>Dans la région d'où proviennent ces données, les bandes rouge, vert et proche infrarouge concentrent l'essentiel de l'information utile.
+Nous allons de nouveau faire une composition colorée de type RGB, mais avec ces 3 bandes.
+C'est ce que l'on appelle une composition colorée en "fausses couleurs" (False Color Composite).</p>
+<ul>
+<li>
+<p>Remplacez la bande bleue par la bande du proche infrarouge.</p>
+</li>
+<li>
+<p>Enregistrez le résultat de l'image RGB sous le nom "HOW15FCC".</p>
+</li>
+<li>
+<p>Interprétez cette nouvelle composition colorée en fausses couleurs.</p>
+</li>
+<li>
+<p>Tracez l'histogramme et comparer les 3 bandes spectrales utilisées pour les différentes catégories d'occupation du sol.</p>
+</li>
+</ul>
+<p><img alt="QGIS image multi-bandes" src="../img/QGIS_multiband_6.gif" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../preparation/" class="btn btn-neutral float-left" title="Préparation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../classification/" class="btn btn-neutral float-right" title="Classification">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../preparation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../classification/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
