@@ -151,7 +151,7 @@ Voici comment créer une composition colorée de type "RGB" (Red, Green and Blue
 
 (La résolution au sol de chaque bande est de 30 m).
 
-Notez que l'on n'utile pas ici la bande 1. La bande bleue du visible correspond ici à la bande 2, ce qui décale les affectations de couleurs. C'est ce que l'on appelle une "composition colorée en vraies couleurs" (True Color Composite).
+Notez que l'on n'utilise pas ici la bande 1. La bande bleue du visible correspond ici à la bande 2, ce qui décale les affectations de couleurs. C'est ce que l'on appelle une "composition colorée en vraies couleurs" (True Color Composite).
 
 * Affichez les informations de l'image et les commenter.
 
